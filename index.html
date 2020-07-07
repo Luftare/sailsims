@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-camera wasd-controls-enabled="true" position="0.5 1 5"></a-camera>
+      <a-plane
+        position="0 0 0"
+        rotation="-90 0 0"
+        width="8"
+        height="8"
+        color="#7BC8A4"
+        opacity="0.5"
+      ></a-plane>
+      <a-box
+        position="0 0 0"
+        rotation="0 0 0"
+        width="0.1"
+        height="0.1"
+        depth="3"
+        color="#4CC3D9"
+        opacity="0.5"
+        id="hinge-target"
+        static-body
+      >
+      </a-box>
+      <a-box
+        dynamic-body
+        depth="2"
+        width="0.1"
+        height="1"
+        position="0 0 0"
+        color="#F00"
+        constraint="type: hinge;
+        target: #hinge-target;
+        axis: 0 0 1;
+        targetAxis: 0 0 1;
+        pivot: 0 0.5 0;
+        targetPivot: 0  0 0;
+        collideConnected: false;
+        "
+        boat
+      >
+        <a-box
+          height="2"
+          width="0.1"
+          depth="0.1"
+          position="0 3.5 0"
+          id="boat-mast"
+        ></a-box>
+      </a-box>
+      <a-box
+        depth="1"
+        width="0.03"
+        height="1"
+        color="#00F"
+        constraint="
+          type: hinge;
+          target: #boat-mast;
+          axis: 0 1 0;
+          targetAxis: 0 1 0;
+          pivot: 0 0 0;
+          targetPivot: 0  0 0;
+          collideConnected: false;
+      "
+        dynamic-body
+      ></a-box>
+
+      <a-sphere dynamic-body position="0.1 8 0"></a-sphere>
+
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+  </body>
+</html>
